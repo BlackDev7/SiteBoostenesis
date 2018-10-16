@@ -8,14 +8,13 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 
 const routes = {
-  index: require('./routes/index'),
-  hello: require('./routes/hello'),
+  index: require('./routes/index')
 };
 
 const app = express();
 
 // All environments
-app.set('port', 1666);
+app.set('port', 2000);
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'ejs');
 app.use(express.favicon());
@@ -37,7 +36,6 @@ app.use(express.errorHandler());
 
 // App routes
 app.get('/', routes.index.index);
-app.get('/hello', routes.hello.hello);
 
 // Run server
 http.createServer(app).listen(app.get('port'), () => {
