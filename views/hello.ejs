@@ -1,0 +1,35 @@
+<%- include header.ejs %>
+
+    <div class="bodyContainer">
+        <h1><%= title %></h1>
+        <ol>
+            <% _.each(items, function(topC) { %>
+            <li>
+                <h1><%= topC.name %></h1>
+                <p><%= topC.page_description %></p>
+                <% if (topC.image) { %>
+                <div>
+                    <img src="/images/<%= topC.image %>">
+                </div>
+                <% } %>
+                <div>
+                    <ol>
+                        <% _.each(topC.categories, function(subC) { %>
+                        <li>
+                            <h2><%= subC.name %></h1>
+                            <p><%= subC.page_description %></p>
+                            <% if (subC.image) { %>
+                            <div>
+                                <img src="/images/<%= subC.image %>">
+                            </div>
+                            <% } %>
+                        </li>
+                        <% }); %>                    
+                    </ol>
+                </div>    
+            </li>
+            <% }); %>
+        </ol>
+    </div>
+
+<%- include footer.ejs %>
