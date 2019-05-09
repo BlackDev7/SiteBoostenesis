@@ -11,8 +11,21 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const errorhandler = require('errorhandler');
 
+var firebase = require("firebase");
+
+firebase.initializeApp({
+  apiKey: "AIzaSyDrpn8Di5oETSgLxm7xI8li9RmbqA8q2k8",
+  authDomain: "site-boostenesis.firebaseapp.com",
+  databaseURL: "https://site-boostenesis.firebaseio.com",
+  projectId: "site-boostenesis",
+  storageBucket: "site-boostenesis.appspot.com",
+  messagingSenderId: "471384210841",
+  appId: "1:471384210841:web:48c2e68dbd4e124f"
+});
+
 const routes = {
-  index: require('./routes/index')
+  index: require('./routes/index'),
+  register: require('./routes/register')
 };
 
 const app = express();
@@ -37,8 +50,14 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(errorhandler());
 
+app.use(function (req, res, next) {
+  req.firebase = firebase;
+  next();
+});
+
 // App routes
-app.get('/', routes.index.index);
+app.get('/', routes.index);
+app.get('/register', routes.register);
 
 // Run server
 http.createServer(app).listen(app.get('port'), () => {
