@@ -1,18 +1,18 @@
-$(document).ready(function () {    
-    $('#ex2').on('slide', function(e) {
-        var price = calculatePrice(e.value[0], e.value[1]);
-        console.log(e.value[0] + ' to ' + e.value[1]);
-        $('.price').text(price.toFixed(2));        
-    });
+// $(document).ready(function () {
+//     $('#ex2').on('slide', function(e) {
+//         var price = calculatePrice(e.value[0], e.value[1]);
+//         console.log(e.value[0] + ' to ' + e.value[1]);
+//         $('.price').text(price.toFixed(2));
+//     });
 
-    $('#ex2').slider({
-      tooltip: 'always',
-      tooltip_split: true
-    });
-                        
-   $().UItoTop({ easingType: 'easeOutQuart' });
-                        
-});
+//     $('#ex2').slider({
+//       tooltip: 'always',
+//       tooltip_split: true
+//     });
+
+//    $().UItoTop({ easingType: 'easeOutQuart' });
+
+// });
 
 function calculatePrice(startRating, endRating) {
     var ratingBreakpoints = {
@@ -38,10 +38,10 @@ function calculatePrice(startRating, endRating) {
         4500: 4.00,
         4550: 5.00,
         4650: 6.00,
-    };  
+    };
     var i = 0;
     var price = 0;
-    
+
     for (i = startRating; i <= endRating; i++) {
         for (breakpoints in ratingBreakpoints) {
             if (i <= breakpoints) {
