@@ -11,9 +11,7 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const errorhandler = require('errorhandler');
 
-const routes = {
-  index: require('./routes/index')
-};
+const routes = require('./routes');
 
 const app = express();
 
@@ -38,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(errorhandler());
 
 // App routes
-app.get('/', routes.index.index);
+app.use('/', routes);
 
 // Run server
 http.createServer(app).listen(app.get('port'), () => {
