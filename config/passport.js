@@ -21,9 +21,6 @@ module.exports = (passport) => {
             // User.findOne wont fire unless data is sent back
             process.nextTick(() => {
 
-            if(!/^[\w.+\-]+@forkpoint\.com$/.test(email)) {
-                return done(null, false, req.flash('signupMessage', 'Invalid email provider.'));
-            }
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             User.findOne({ 'local.email':  email }, (err, user) => {
@@ -56,9 +53,6 @@ module.exports = (passport) => {
         passReqToCallback : true
     }, (req, email, password, done) => {
 
-        if(!/^[\w.+\-]+@forkpoint\.com$/.test(email)) {
-            return done(null, false, req.flash('loginMessage', 'Invalid email provider.'));
-        }
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'local.email':  email }, (err, user) => {
